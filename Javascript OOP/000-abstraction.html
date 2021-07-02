@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abstraction</title>
+</head>
+<body>
+    <script>
+        class Human {
+            constructor({ name, address }) {
+                if (this.constructor === Human) {
+                    throw new Error(
+                        "Cannot instantiate from Abstract Class"
+                    );
+                }
+                this.name = name;
+                this.address = address;
+                this.profession = this.constructor.name;
+            }
+            work() {
+                console.log("Working...");
+            }
+            introduce() {
+                console.log(`Hello, my name is ${this.name}`);
+            }
+        }
+        class Police extends Human {
+            constructor(props) {
+                super(props);
+                this.rank = props.rank;
+            }
+            work() {
+                console.log("Go to the police station");
+                super.work();
+            }
+        }
+        const wiranto = new Police({
+            name: "Wiranto",
+            address: "Jakarta",
+            rank: "Jenderal",
+        });
+        console.log(wiranto.profession);
+        try {
+            const abstract = new Human({
+                name: "Abstract",
+                address: "unknown",
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    </script>
+</body>
+</html>

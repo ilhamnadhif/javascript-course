@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Polymorphism</title>
+    </head>
+    <body>
+        <script>
+            class Human {
+                constructor({name, address}) {
+                    this.name = name;
+                    this.address = address;
+                }
+                introduce() {
+                    console.log(`Hi, my name is ${this.name}`);
+                }
+                work() {
+                    console.log(`${this.constructor.name} : Working!!`);
+                }
+            }
+            function PublicServer(Base) {
+                return class extends Base {
+                    save() {
+                        console.log("SFX: Thank You!");
+                    }
+                };
+            }
+            function Military(Base) {
+                return class extends Base {
+                    shoot() {
+                        console.log("DOORR!");
+                    }
+                };
+            }
+
+            class Doctor extends PublicServer(Human) {
+                constructor(props) {
+                    super(props);
+                }
+                work() {
+                    super.work();
+                    super.save();
+                }
+            }
+            class Police extends PublicServer(Military(Human)) {
+                static workplace = "Police Station";
+                constructor(props) {
+                    super(props);
+                    this.rank = props.rank;
+                }
+                work() {
+                    super.work();
+                    super.shoot();
+                    super.save();
+                }
+            }
+            class Army extends PublicServer(Military(Human)) {
+                static workplace = "Militer Station";
+                constructor(props) {
+                    super(props);
+                    this.rank = props.rank;
+                }
+                work() {
+                    super.work();
+                    super.shoot();
+                    super.save();
+                }
+            }
+            class Writer extends Human {
+                work() {
+                    console.log("Writer books");
+                    super.work();
+                }
+            }
+
+            const wiranto = new Police({
+                name: "Wiranto",
+                address: "Yogyakarta",
+                rank: "Jendral",
+            });
+            console.log(wiranto);
+            wiranto.work()
+
+            const prabowo = new Army({
+                name: "Prabowo",
+                address: "Jakarta",
+                rank: "Menteri Pertahanan",
+            });
+            console.log(prabowo);
+            prabowo.work()
+
+            const twindy = new Doctor({
+                name: "Twindy Rarasati",
+                address: "Surabaya",
+                rank: "Dokter nda tau",
+            });
+            console.log(twindy);
+            twindy.work()
+
+            const alvi = new Writer({
+                name: "Alvi Syahrin",
+                address: "Indonesia",
+                rank: "Penulis hebat",
+            });
+            console.log(alvi);
+            alvi.work()
+
+        </script>
+    </body>
+</html>

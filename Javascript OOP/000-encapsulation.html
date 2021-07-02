@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encapsulation</title>
+</head>
+<body>
+    <script>
+        /* ------------PUBLIC------------ */
+        class Public {
+            constructor(name, address) {
+                this.name = name;
+                this.address = address;
+            }
+
+            introduce() {
+                console.log(`Hello, my name is ${this.name}`);
+            }
+            static isEating(food) {
+                let foods = ["plant", "animals"];
+                return foods.includes(food.toLowerCase());
+            }
+        }
+        console.log("---Public---");
+        const ilham = new Public("Ilham", "Kudus");
+        console.log(ilham);
+        ilham.introduce();
+        console.log(Public.isEating("PLANT"));
+        console.log(Public.isEating("spageti"));
+
+        /* ------------PRIVATE------------ */
+        class Private {
+            constructor(name, address) {
+                this.name = name;
+                this.address = address;
+            }
+            #doGossip() {
+                console.log(`My address will become viral ${this.address}`);
+            }
+            talk() {
+                this.#doGossip();
+            }
+            static #isHidingArea = true;
+        }
+        console.log("---Private---");
+        const afif = new Private("Afif", "Pati");
+        afif.talk();
+        try {
+            Private.#isHidingArea;
+        } catch (error) {
+            console.error(error);
+        }
+
+        /* ------------PROTECTED------------ */
+        class Protected {
+            constructor(name, address) {
+                this.name = name;
+                this.address = address;
+            }
+            _call() {
+                console.log(`Call me as ${this.name}`);
+            }
+        }
+        class Protect extends Protected {
+            constructor(name, address, task, salary) {
+                super(name, address);
+                this.task;
+                this.salary;
+            }
+            doCall() {
+                super._call();
+            }
+        }
+        console.log("---Protected---");
+        const a = new Protected("Sabrina", "Jakarta");
+        const b = new Protect("Fahmi", "Demak", "Developer", "$20000");
+        a._call();
+        b.doCall();
+    </script>
+</body>
+</html>
