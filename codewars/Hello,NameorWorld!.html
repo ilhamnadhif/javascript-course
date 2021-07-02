@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <script>
+      function hello(name) {
+          if (!name) {
+              return "Hello, World!";
+          }
+          let str = [];
+          name.split(" ").forEach(e => {
+            [cap, ...rest] = e;
+            let ha = [cap.toUpperCase(), ...rest.map((r)=>{
+                return r.toLowerCase()
+            })]
+            str.push(ha.join(""))
+          });
+          
+        return `Hello, ${str.join(" ")}!`;
+      }
+      /* function hello(name) {
+        if (name) {
+            return "Hello, " + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+        } else {
+            return "Hello, World!";
+        }
+      } */
+      console.log(hello("mUHAMmaD ILhaM nADHif"));
+    </script>
+  </body>
+</html>

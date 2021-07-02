@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher Order Function</title>
+</head>
+<body>
+    <script>
+        function perulangan(array, callback){
+            const newArray = [];
+            for(let i = 0; i < array.length ; i++){
+                newArray.push(callback(array[i]))
+            } 
+            return newArray
+        }
+        const nama = ["Ilham", "Afif", "FahmiBahtiar", "Yanuar Nauval"]
+        const per = perulangan(nama, (item)=>{
+            return item.length
+        })
+        console.log(per);
+    </script>
+</body>
+</html>

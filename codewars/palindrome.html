@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome</title>
+</head>
+<body>
+    <script>
+        // Cara 1
+        /* function isPalindrome(str) {
+            let string = "";
+            for (let i = str.length -1; i >= 0; i--) {
+                string += str[i]
+            }
+            return  (string == str) ? true : false
+        }
+        console.log(isPalindrome("kodok")); */
+
+        // Cara 2
+        function isPalindrome(str) {
+            return str.split("").reverse().join("") == str ? true : false;
+            // return [...str].reverse().join("") == str ? true : false
+        }
+        console.log(isPalindrome("kasur rusak"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+</head>
+<body>
+    <script>
+        class Human{
+            constructor(name, address){
+                this.name = name;
+                this.address = address
+            }
+            introduce(){
+                console.log(`Hi, my name is ${this.name}`);
+            }
+            work(){
+                console.log("Work!");
+            }
+        }
+        class Programmer extends Human{
+            constructor(name, address, programmingLanguages){
+                super(name, address)
+                this.programmingLanguages = programmingLanguages
+            }
+            introduce(){
+                super.introduce();
+                console.log("I can write ", this.programmingLanguages);
+            }
+            code(){
+                console.log("Code some", this.programmingLanguages[
+                    Math.floor(Math.random() * this.programmingLanguages.length)
+                ]);
+            }
+        }
+
+        let afif = new Human("Afif Arifin", "Pati");
+        afif.introduce()
+
+        let ilham = new Programmer("Ilham Nadhif", "Kudus", ["Javascript", "PHP", "Python"])
+        ilham.introduce()
+        ilham.code()
+        ilham.work()
+
+        try {
+            Obama.code()
+        } catch (error) {
+            console.error(error.message);
+        }
+        console.log(ilham instanceof Human);
+        console.log(ilham instanceof Programmer);
+    </script>
+</body>
+</html>
